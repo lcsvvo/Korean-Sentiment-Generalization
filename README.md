@@ -94,3 +94,5 @@ flowchart LR
 
 [Notebooks](notebooks/README.md), [Results](results/README.md), [Figures](figures/README.md), [Docs](docs/README.md)
 
+포트폴리오 공개용 저장소. 별도의 코드 재사용 라이선스는 제공하지 않음.
+
