@@ -2,7 +2,7 @@
 
 ## Overview
 
-한국어 영화 리뷰 감성 분류에서 **Public, Hidden 평가 성능의 차이**와 **문장 임베딩 결합 효과**를 비교한 개인 프로젝트.
+한국어 영화 리뷰 감성 분류에서 **Public, Hidden 평가 성능의 차이**와 **문장 임베딩 결합 효과**를 비교.
 
 - **Phase 1:** TF-IDF 기반 stacking 구성과 Public, Hidden 성능 비교
 - **Phase 2:** 문장 임베딩과 5-fold OOF 예측을 추가한 확장 실험
@@ -23,11 +23,30 @@
 
 ## Research Design
 
-- **1. 리뷰를 수치로 변환:** 텍스트 정제 후 형태소, 문자, 감성 표현을 TF-IDF로 변환. 리뷰 안의 표현과 빈도를 분류 모델의 입력으로 사용
-- **2. TF-IDF 모델 구성 — Phase 1:** Logistic Regression과 Complement NB로 긍정, 부정 확률 예측. 학습 데이터를 80:20으로 나눠 기본 모델 학습과 메타 모델 입력 생성에 사용
-- **3. 문장 임베딩 추가 — Phase 2:** multilingual-e5와 KR-SBERT로 문장의 의미를 수치 벡터로 변환하고 각각 분류 모델 학습. Word, Char TF-IDF 모델과 함께 5-fold 예측 생성
-- **4. 예측 결합:** 기본 모델의 예측 확률과 리뷰 길이, 부정어 등의 특성을 Logistic Regression 메타 모델에 입력하는 **stacking** 적용. Phase 2에서는 각 표본을 학습하지 않은 fold의 예측값인 **OOF**를 메타 모델 학습에 사용
-- **5. 결과 비교:** Phase 1은 Public, Hidden 점수와 순위 비교. Phase 2는 동일 Hidden 평가셋에서 TF-IDF 기준 모델과 임베딩 결합 모델의 **MCC** 비교
+1. **리뷰를 수치로 변환**
+
+   - 텍스트 정제 후 형태소, 문자, 감성 표현을 **TF-IDF**로 변환
+   - 리뷰 안의 표현과 빈도를 분류 모델의 입력으로 사용
+
+2. **TF-IDF 모델 구성, Phase 1**
+
+   - **Logistic Regression과 Complement NB**로 긍정, 부정 확률 예측
+   - 학습 데이터를 **80:20으로 분할**해 기본 모델 학습과 메타 모델 입력 생성에 사용
+
+3. **문장 임베딩 추가, Phase 2**
+
+   - **multilingual-e5와 KR-SBERT**로 문장의 의미를 수치 벡터로 변환하고 각각 분류 모델 학습
+   - Word, Char TF-IDF 모델과 함께 **5-fold 예측** 생성
+
+4. **예측 결합**
+
+   - **Stacking:** 기본 모델의 예측 확률과 리뷰 길이, 부정어 등의 특성을 Logistic Regression 메타 모델에 입력
+   - Phase 2에서는 각 표본을 학습하지 않은 fold의 예측값인 **OOF**를 메타 모델 학습에 사용
+
+5. **결과 비교**
+
+   - Phase 1은 **Public, Hidden 점수와 순위** 비교
+   - Phase 2는 **동일 Hidden 평가셋**에서 TF-IDF 기준 모델과 임베딩 결합 모델의 MCC 비교
 
 ## Analysis Workflow
 

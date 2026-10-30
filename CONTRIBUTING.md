@@ -1,6 +1,6 @@
 # Contributing
 
-개인 저장소이지만 협업 저장소 기준의 Git 워크플로우를 적용한다. AI 에이전트(Claude · Codex 등)를 사용한 작업에도 동일하게 적용한다.
+변경 작업에 적용하는 **Git 운영 규칙**.
 
 ## Workflow
 
@@ -26,3 +26,4 @@
 ## Pull Request
 
 무엇을(what), 왜(why), 리뷰 포인트만 간단히 작성한다. Merge는 저장소 소유자 확인 후 수행한다.
+
