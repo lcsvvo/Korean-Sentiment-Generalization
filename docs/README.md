@@ -1,15 +1,17 @@
-# docs — 심화 자료
+# Docs
 
-루트 [README](../README.md)가 전체 그림이라면, 이 폴더는 **각 단계를 깊게 파고든 근거 문서**.
+**방법론·실험 기록·평가 해석**의 상세 문서 안내.
 
-| 문서 | 내용 |
+| Document | Content |
 |---|---|
-| [01_overview.md](01_overview.md) | 문제 정의 · 제약 · 평가 지표 |
-| [02_methodology.md](02_methodology.md) | 3-View · 4-Model · Augmented Stacking 아키텍처와 하이퍼파라미터 근거 |
-| [03_experiments_main.md](03_experiments_main.md) | 채택 실험 5개 카드 (성공 경로) |
-| [04_experiments_appendix.md](04_experiments_appendix.md) | 폐기 실험 9개 카드 (실패에서 얻은 교훈) |
-| [05_generalization_analysis.md](05_generalization_analysis.md) | CV→Hidden gap · bias-variance · MCC 선택 이유 |
-| [06_drill06_extension.md](06_drill06_extension.md) | sparse → dense 임베딩 확장 (Phase 2) |
-| [07_lessons_learned.md](07_lessons_learned.md) | 계층화된 핵심 교훈 카드 |
+| [Overview](01_overview.md) | 문제·과제 제약·평가 지표 |
+| [Methodology](02_methodology.md) | TF-IDF·기본 모델·stacking 구성 |
+| [Selected Experiments](03_experiments_main.md) | 채택 실험과 선택 근거 |
+| [Other Experiments](04_experiments_appendix.md) | 미채택 실험과 기록 |
+| [Generalization Analysis](05_generalization_analysis.md) | Validation·Public·Hidden 성능 비교 |
+| [Embedding Extension](06_drill06_extension.md) | Phase 2 설계와 임베딩 확장 |
+| [Lessons](07_lessons_learned.md) | 실험에서 확인한 문제와 후속 과제 |
 
-> 머신러닝 역량 평가가 목적이라면 **04 (폐기 실험)** 와 **05 (일반화 분석)** 부터 읽기 권장.
+- **최종 점수:** [Results](../results/README.md) 참조
+- **실행 안내:** [Notebooks](../notebooks/README.md) 참조
+- 상세 문서의 설계 목표·예상값과 실제 평가 결과는 구분 필요

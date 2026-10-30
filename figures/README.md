@@ -1,16 +1,21 @@
 # Figures
 
-README·docs에서 인용하는 결과 그림 모음. 노트북 실행 결과로 생성, 수동 편집 없음.
+**분석 결과와 모델 구성 그림**.
 
-| 파일 | 인용 위치 | 내용 |
-|---|---|---|
-| `fig0_improvement_journey.png` | README Figure 1 (Hero) | Hidden 9위 → 3위 개선 여정 |
-| `fig1_public_hidden_shakeup.png` | README Figure 2 | Public 0.757(5위) → Hidden 0.7522(9위) 셰이크업 |
-| `fig3_sparse_vs_dense.png` | README Figure 3 | sparse 0.665278 → dense 0.753970 (+0.088692) |
-| `fig2_lb_evolution.png` | README Figure 4 | Phase 1 Public LB 0.733 → 0.757 발전 과정 |
-| `fig5_generalization_gap.png` | README Figure 5 | Val vs Public LB 일반화 격차 진단 |
-| `fig4_pipeline.png` | docs | 3-View → 4-Model → Stacking 파이프라인 |
-| `fig6_threshold_curve.png` | docs | Phase 2 OOF MCC-optimal threshold sweep |
-| `social_preview.png` | 저장소 소셜 프리뷰 | GitHub 카드 썸네일 |
+| Figure | Content |
+|---|---|
+| [Public vs. Hidden](fig1_public_hidden_shakeup.png) | Phase 1의 Public·Hidden MCC와 순위 |
+| [Sparse vs. Dense](fig3_sparse_vs_dense.png) | Phase 2 동일 Hidden 평가셋의 모델 비교 |
+| [Public Score Changes](fig2_lb_evolution.png) | Phase 1 모델 구성별 Public MCC |
+| [Validation vs. Public](fig5_generalization_gap.png) | 실험별 Validation·Public 점수 차이 |
+| [Model Pipeline](fig4_pipeline.png) | Phase 1 stacking 구성 |
+| [Threshold Curve](fig6_threshold_curve.png) | Phase 2 메타 학습 표본의 threshold별 MCC |
+| [Phase Summary](fig0_improvement_journey.png) | 서로 다른 평가셋에서 얻은 Phase별 결과 요약 |
+| [Social Preview](social_preview.png) | 저장소 미리보기 이미지 |
 
-> 모든 수치는 [`results/experiments_master.csv`](../results/experiments_master.csv) 기준.
+## Notes
+
+- **점수 출처:** [실험 기록](../results/experiments_master.csv)
+- **Phase 구분:** Phase 1·2 순위는 참가자 수와 평가셋이 달라 직접 개선 비교 불가
+- **점수 차이:** Validation·Public 차이만으로 과적합을 확정할 수 없음
+- **Threshold:** 메타 모델 학습 표본에서 계산한 값이며 독립된 검증 성능은 아님
