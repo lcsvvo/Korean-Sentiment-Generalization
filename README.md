@@ -23,44 +23,26 @@
 
 ## Research Design
 
-- **평가 성능:** Public 점수와 순위가 Hidden 평가에서도 유지되는지 비교
-- **표현 방식:** TF-IDF와 문장 임베딩을 결합한 모델을 동일 Hidden 평가셋의 기준 모델과 비교
-
-```mermaid
-flowchart TD
-    Q["한국어 영화 리뷰 감성 분류"]
-    Q --> P1["Phase 1 · TF-IDF stacking"]
-    Q --> P2["Phase 2 · TF-IDF + 문장 임베딩"]
-    P1 --> S["형태소·문자·감성 표현<br/>LogReg + Complement NB"]
-    P2 --> D["Word·Char TF-IDF<br/>multilingual-e5 + KR-SBERT"]
-    S --> M1["LogReg 메타 모델"]
-    D --> M2["5-fold OOF 예측<br/>LogReg 메타 모델"]
-    M1 --> R1["Public·Hidden 성능 차이"]
-    M2 --> R2["Phase 2 동일 Hidden 평가셋<br/>기준 모델 대비 성능 차이"]
-    classDef model fill:#ede9fe,stroke:#8b5cf6,color:#111827;
-    class P1,P2,S,D,M1,M2 model;
-```
-
-OOF는 각 표본을 학습에 사용하지 않은 fold 모델의 예측값. Phase 2에서는 이 예측값을 메타 모델의 학습 입력으로 사용.
+- **평가 성능:** Phase 1의 Public·Hidden 점수와 순위 차이 비교
+- **모델 확장:** Phase 2의 동일 Hidden 평가셋에서 TF-IDF 기준 모델과 임베딩 결합 모델 비교
 
 ## Analysis Workflow
 
 ```mermaid
-flowchart TD
-    A["리뷰 데이터 로드"] --> B["텍스트 정제·특성 생성"]
-    B --> C["Phase 1<br/>80:20 분할·기본 모델 학습"]
-    B --> D["Phase 2<br/>임베딩 생성·5-fold 기본 모델 학습"]
-    C --> E["Holdout 예측 + 메타 특성"]
-    D --> F["OOF 예측 + 메타 특성"]
-    E --> G["메타 모델 학습"]
-    F --> H["메타 모델 학습·threshold 탐색"]
-    G --> I["전체 학습 데이터로 기본 모델 재학습"]
-    H --> I
-    I --> J["Test 예측·제출"]
-    J --> K["평가 결과 기록·비교"]
+flowchart LR
+    A["리뷰 정제<br/>특성 생성"]
+    A --> B["Phase 1 · TF-IDF<br/>LogReg + Complement NB<br/>80:20 분할"]
+    A --> C["Phase 2 · TF-IDF<br/>e5 + KR-SBERT<br/>5-fold 예측"]
+    B --> D["Holdout 예측<br/>메타 모델 학습"]
+    C --> E["OOF 예측<br/>메타 모델·threshold 학습"]
+    D --> F["기본 모델 재학습<br/>Test 예측·제출"]
+    E --> F
+    F --> G["평가 결과 비교"]
     classDef step fill:#ede9fe,stroke:#8b5cf6,color:#111827;
-    class B,C,D,E,F,G,H,I step;
+    class B,C,D,E,F step;
 ```
+
+OOF는 각 표본을 학습에 사용하지 않은 fold 모델의 예측값. Phase 2 메타 모델의 학습 입력으로 사용.
 
 실행 환경·경로 설정·Notebook 안내는 [Notebooks](notebooks/README.md) 참조.
 
@@ -112,3 +94,5 @@ flowchart TD
 ```
 
 [Notebooks](notebooks/README.md) · [Results](results/README.md) · [Figures](figures/README.md) · [Docs](docs/README.md)
+
+
