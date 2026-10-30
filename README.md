@@ -53,11 +53,11 @@
 ```mermaid
 flowchart LR
     A["리뷰 정제<br/>특성 생성"]
-    A --> B["Phase 1, TF-IDF<br/>LogReg + Complement NB<br/>80:20 분할"]
-    A --> C["Phase 2, TF-IDF<br/>e5 + KR-SBERT<br/>5-fold 예측"]
-    B --> D["Holdout 예측<br/>메타 모델 학습"]
-    C --> E["OOF 예측<br/>메타 모델, threshold 학습"]
-    D --> F["기본 모델 재학습<br/>Test 예측, 제출"]
+    A -->|Phase 1| B["TF-IDF<br/>LogReg<br/>Complement NB"]
+    A -->|Phase 2| C["TF-IDF<br/>e5<br/>KR-SBERT"]
+    B -->|80:20 Holdout| D["예측 결합<br/>메타 모델 학습"]
+    C -->|5-fold OOF| E["예측 결합<br/>메타 모델 학습<br/>threshold 선택"]
+    D --> F["전체 재학습<br/>Test 예측, 제출"]
     E --> F
     F --> G["평가 결과 비교"]
     classDef step fill:#ede9fe,stroke:#8b5cf6,color:#111827;
