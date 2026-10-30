@@ -1,28 +1,29 @@
 # Data
 
-원본 데이터는 용량·재배포 제약으로 저장소에 포함하지 않음 (`.gitignore` 처리).
+**한국어 영화 리뷰 감성 분류**에 사용한 과제용 데이터 안내.
 
-## 출처
+## Source
 
-- **NSMC 계열** (Naver Sentiment Movie Corpus) 한국어 영화 리뷰 이진 분류 데이터.
-- 원본: <https://github.com/e9t/nsmc>
+- **NSMC 계열** 한국어 영화 리뷰 데이터
+- 원본 출처: [Naver Sentiment Movie Corpus](https://github.com/e9t/nsmc)
 
-## 기대 파일 구조
+## Files
 
-노트북 실행 전 아래 두 파일을 이 폴더(또는 노트북 `DATA_DIR`)에 위치:
+| File | Rows | Columns |
+|---|---:|---|
+| `public_train.csv` | **149,995** | `row_id`, `text`, `label` |
+| `public_test.csv` | **49,997** | `row_id`, `text` |
 
-| 파일 | 행 수 | 컬럼 |
-|---|---|---|
-| `public_train.csv` | 149,995 | `row_id`, `text`, `label` |
-| `public_test.csv` | 49,997 | `row_id`, `text` |
+- **label:** `POSITIVE` 또는 `NEGATIVE`
+- Test 정답 라벨은 입력 파일에 미포함
 
-- `label` ∈ {`POSITIVE`, `NEGATIVE`} — 학습 데이터 클래스 균형 ≈ 50.1% / 49.9% (NEGATIVE 75,170 / POSITIVE 74,825).
+## Paths
 
-## 노트북 경로 설정
+- 두 CSV를 같은 폴더에 배치하고 각 Notebook의 **`DATA_DIR`를 해당 폴더로 설정**
+- Colab에서는 파일을 둔 Google Drive 경로로 변경
+- 실행 순서는 [Notebooks](../notebooks/README.md) 참조
 
-```python
-from pathlib import Path
-DATA_DIR = Path("data")  # 또는 Colab Drive 경로로 교체
-train = pd.read_csv(DATA_DIR / "public_train.csv")
-test  = pd.read_csv(DATA_DIR / "public_test.csv")
-```
+## Access
+
+- 실행에 필요한 **과제용 CSV는 별도 확보 필요**
+- 원자료는 재배포 제약으로 저장소에 미포함
